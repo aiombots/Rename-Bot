@@ -85,6 +85,14 @@ async def button(bot, update):
           await update.message.edit(text=Scripted.JOIN_NOW_TEXT,
                                     reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]])
           )
+          return
+        except Exception:
+          await update.message.edit(Scripted.CONTACT_MY_DEVELOPER)
+          return
+        
+        if (" " in update.text) and (update.reply_to_message is not None):
+        
+        
                                                                         
                                          
 
