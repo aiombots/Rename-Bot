@@ -4,7 +4,8 @@ import os
 import time
 import logging
 import pyrogram
-from renamer-bot.plugins.humanbytes import humanbytes 
+import math
+import time
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -148,3 +149,16 @@ File Size: {file_size}""",
         disable_web_page_preview=True,
         reply_to_message_id=m.message_id
     )
+
+async def humanbytes(size):
+    # https://stackoverflow.com/a/49361727/4723940
+    # 2**10 = 1024
+    if not size:
+        return ""
+    power = 2**10
+    n = 0
+    Dic_powerN = {0: ' ', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
+    while size > power:
+        size /= power
+        n += 1
+    return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
