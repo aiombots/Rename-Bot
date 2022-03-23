@@ -73,7 +73,7 @@ async def upgra(bot, update):
 
 @Clinton.on_callback_query()
 async def button(bot, update):
-    if m.data == "rename":
+    if update.data == "rename":
       update_channel = Config.UPDATE_CHANNEL
       if update_channel:
         try:
