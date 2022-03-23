@@ -75,25 +75,6 @@ async def upgra(bot, update):
 @Clinton.on_callback_query()
 async def button(bot, update):
     if update.data == "rename":
-      update_channel = Config.UPDATE_CHANNEL
-      if update_channel:
-        try:
-          user = await bot.get_chat_member(update_channel, Message.chat.id)
-          if user.status == "kicked":
-            await update.message.edit(Scripted.ACCESS_DENIED)
-            return
-        except UserNotParticipant:
-          await update.message.edit(text=Scripted.JOIN_NOW_TEXT,
-                                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]])
-          )
-          return
-        await update.message.delete(True)
-        await bot.send_message(
-            chat_id=update.message.chat.id,
-            text="now send me a new name for the file",
-            reply_to_message_id=updete.message.reply_to_message.message_id,
-            reply_markup=ForceReply(False)
-        )
      
      
               
