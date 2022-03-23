@@ -75,7 +75,14 @@ async def upgra(bot, update):
 @Clinton.on_callback_query()
 async def button(bot, update):
     if update.data == "rename":
-     
+     await update.message.delete(True)
+     await bot.send_message(
+         chat_id=update.message.chat.id,
+         text="now send me a new name for the file",
+         reply_to_message_id=updete.message.reply_to_message.message_id,
+         reply_markup=ForceReply(False)
+    )   
+    
      
               
      
