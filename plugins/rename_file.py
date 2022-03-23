@@ -127,3 +127,23 @@ async def rename_doc(bot, update):
             chat_id=update.chat.id,
             text=Scripted.REPLY_TO_FILE,
             reply_to_message_id=update.message_id)
+
+@Clinton.on_message(filters.document | filters.video | filters.audio | filters.voice | filters.video_note | filters.animation) 
+async def on_media_handler(c: Client, m: "types.Message"):
+    media = m.document or m.video or m.audio or m.voice or m.video_note or m.animation
+    file_name = media.file_name
+    file_type = media.mime_type
+    file_size = humanbytes(media.file_size)
+    await c.send_flooded_message(  
+        chat_id=m.chat.id,
+        text=f"""File Name: {file_name}
+File Extension: {file_name.rsplit('.', 1)[-1].upper()}
+File Type: `{file_type}
+File Size: {file_size}""",
+        reply_markup=types.InlineKeyboardMarkup(
+            [[types.InlineKeyboardButton("Convert", callback_data="showFileInfo"),
+              types.InlineKeyboardButton("Rename", callback_data="rename")]]
+        ),
+        disable_web_page_preview=True,
+        reply_to_message_id=m.message_id
+    )
