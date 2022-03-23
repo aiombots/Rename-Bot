@@ -71,10 +71,24 @@ async def upgra(bot, update):
           disable_web_page_preview=True,
           reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text='🔐 ᴄʟᴏꜱᴇ', callback_data='DM') ] ] ) )
 
-
-
 @Clinton.on_callback_query()
 async def button(bot, update):
+    if m.data == "rename":
+      update_channel = Config.UPDATE_CHANNEL
+      if update_channel:
+        try:
+          user = await bot.get_chat_member(update_channel, update.chat.id)
+          if user.status == "kicked":
+            await update.message.edit(Scripted.ACCESS_DENIED)
+            return
+        except UserNotParticipant:
+          await update.message.edit(text=Scripted.JOIN_NOW_TEXT,
+                                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]
+                                                                        
+                                         
+
+
+
  
-      if  'DM'  in update.data:
-                await update.message.delete()
+
+                
