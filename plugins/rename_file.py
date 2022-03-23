@@ -20,7 +20,7 @@ else:
     from config import Config
 
 from PIL import Image
-from pyrogram import filters
+from pyrogram import filters, types
 from scripts import Scripted
 from database.database import *
 from pyrogram import Client as Clinton
