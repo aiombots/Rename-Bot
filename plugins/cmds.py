@@ -86,9 +86,6 @@ async def button(bot, update):
                                     reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]])
           )
           return
-        except Exception:
-          await update.message.edit(Scripted.CONTACT_MY_DEVELOPER)
-          return
      await update.message.delete(True)
      await bot.send_message(
               chat_id=update.message.chat.id,
