@@ -82,3 +82,66 @@ async def button(bot, update):
          reply_to_message_id=update.message.reply_to_message.message_id,
          reply_markup=ForceReply(False)
     )
+
+@Clinton.on_message(filters.private & filters.reply & filters.text)
+async def rep_rename_call(c, m):
+    try:
+        get_mode = str(m.reply_to_message.text).splitlines()[0].split(" ")[1]
+    except IndexError:
+        get_mode = "Video"
+    if (m.reply_to_message.reply_markup) and isinstance(m.reply_to_message.reply_markup, ForceReply):
+      if get_mode == "File":
+        asyncio.create_task(renamer(c, m,))   
+      else:
+        asyncio.create_task(renamer(c, m))
+    else:
+        print('No media present')
+
+async def renamer(c,m):
+  ##
+  bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
+  todown = bot_msg.reply_to_message # msg with media
+  new_f_name = m.text # new name
+  media = todown.document or todown.video or todown.audio or todown.voice or todown.video_note or todown.animation
+  try:
+    media_name = media.file_name
+    extension = media_name.split(".")[-1]
+  except:
+    extension = "mkv"
+  await bot_msg.delete() # delete name asked msg 
+  if len(new_f_name) > 64:
+      await m.reply_text(text=f"Lɪᴍɪᴛs Oꜰ Tᴇʟᴇɢʀᴀᴍ Fɪʟᴇ Nᴀᴍᴇ Is 64 Cʜᴀʀᴇᴄᴛᴇʀs Oɴʟʏ")
+      return
+  d_msg = await m.reply_text("Downloding")
+  d_location = Config.DOWNLOAD_LOCATION + "/"
+  d_time = time.time()
+  try:
+    the_real_download_location = await bot.download_media(
+            message=update.reply_to_message,
+            file_name=download_location,
+            progress=progress_for_pyrogram,
+            progress_args=(Scripted.DOWNLOAD_START, c, c_time) )
+
+  if the_real_download_location is not None:
+            try:
+                await c.edit_message_text(
+                    text=Scripted.TRYING_TO_UPLOAD,
+                    chat_id=update.chat.id,
+                    message_id=c.message_id
+                )
+            except:
+                pass
+            new_file_name = download_location + file_name
+            os.rename(the_real_download_location, new_file_name)
+            logger.info(the_real_download_location)
+            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+            if not os.path.exists(thumb_image_path):
+                mes = await sthumb(update.from_user.id)
+                if mes != None:
+                    m = await bot.get_messages(update.chat.id, mes.msg_id)
+                    await m.download(file_name=thumb_image_path)
+                    thumb_image_path = thumb_image_path
+                else:
+                    thumb_image_path = None
+            else: 
+
