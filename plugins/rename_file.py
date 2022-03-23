@@ -136,7 +136,7 @@ async def on_media_handler(c: Clinton, m: "types.Message"):
     file_name = media.file_name
     file_type = media.mime_type
     file_size = humanbytes(media.file_size)
-    await c.send_flooded_message(  
+    await c.send_message(  
         chat_id=m.chat.id,
         text=f"""File Name: {file_name}
 File Extension: {file_name.rsplit('.', 1)[-1].upper()}
