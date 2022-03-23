@@ -83,7 +83,8 @@ async def button(bot, update):
             return
         except UserNotParticipant:
           await update.message.edit(text=Scripted.JOIN_NOW_TEXT,
-                                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]
+                                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text="ᴊᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Config.UPDATE_CHANNEL}") ]])
+          )
                                                                         
                                          
 
