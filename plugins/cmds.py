@@ -21,7 +21,7 @@ else:
 from pyrogram import filters
 from scripts import Scripted
 from pyrogram import Client as Clinton
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply
 
 
 
@@ -89,6 +89,14 @@ async def button(bot, update):
         except Exception:
           await update.message.edit(Scripted.CONTACT_MY_DEVELOPER)
           return
+     await update.message.delete(True)
+     await bot.send_message(
+              chat_id=update.message.chat.id,
+              text="now send me a new name for the file",
+              reply_to_message_id=updete.message.reply_to_message.message_id,
+              reply_markup=ForceReply(False)
+              )
+     
         
         if (" " in update.text) and (update.reply_to_message is not None):
         
