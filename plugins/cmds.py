@@ -5,6 +5,7 @@ import os
 import sqlite3
 import logging
 import pyrogram
+from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
