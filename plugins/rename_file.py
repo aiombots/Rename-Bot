@@ -129,7 +129,7 @@ async def rename_doc(bot, update):
             reply_to_message_id=update.message_id)
 
 @Clinton.on_message(filters.document | filters.video | filters.audio | filters.voice | filters.video_note | filters.animation) 
-async def on_media_handler(c: Client, m: "types.Message"):
+async def on_media_handler(c: Clinton, m: "types.Message"):
     media = m.document or m.video or m.audio or m.voice or m.video_note or m.animation
     file_name = media.file_name
     file_type = media.mime_type
