@@ -4,6 +4,7 @@ aiohttp
 hachoir
 pyrogram
 requests
+asyncio
 tgcrypto
 feedparser
 beautifulsoup4
