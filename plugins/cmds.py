@@ -22,7 +22,7 @@ else:
 from pyrogram import filters
 from scripts import Scripted
 from pyrogram import Client as Clinton
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply, Message
 
 
 
@@ -78,7 +78,7 @@ async def button(bot, update):
       update_channel = Config.UPDATE_CHANNEL
       if update_channel:
         try:
-          user = await bot.get_chat_member(update_channel, update.chat.id)
+          user = await bot.get_chat_member(update_channel, Message.chat.id)
           if user.status == "kicked":
             await update.message.edit(Scripted.ACCESS_DENIED)
             return
