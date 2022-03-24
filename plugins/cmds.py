@@ -187,6 +187,6 @@ async def renamer(c,m,as_file=False):
       os.remove(thumb_image_path)
   except:
       pass
-  await c.edit_message_text(
+  await c.send_message(
       text=Scripted.UPLOAD_SUCCESS
   )
