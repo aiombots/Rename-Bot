@@ -141,7 +141,7 @@ async def renamer(c,m,as_file=False):
   new_file_name = d_location + new_f_name + "." + extension
   os.rename(downloaded_file,new_file_name)
   logger.info(downloaded_file)
-  thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+  thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
   try:
     await d_msg.delete()
     u_msg = await m.reply_text("uplodimg",quote=True)
