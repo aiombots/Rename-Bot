@@ -130,6 +130,12 @@ async def renamer(c,m,as_file=False):
   
   if downloaded_file is not None:
     try:
+        await bot.edit_message_text(
+            text="filed",
+            chat_id=update.chat.id,
+            message_id=c.message_id
+        )
+
       
 
   except Exception as e:
