@@ -127,7 +127,7 @@ async def renamer(c,m,as_file=False):
     message=todown,
     file_name=d_location,
     progress=progress_for_pyrogram,
-    progress_args=(Scripted.DOWNLOAD_START, d_msg, e) )
+    progress_args=(Scripted.DOWNLOAD_START, d_msg, d_time) )
   
   if downloaded_file is not None:
     try:
