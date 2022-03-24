@@ -26,6 +26,8 @@ if bool(os.environ.get("WEBHOOK", False)):
 else:
     from config import Config
 
+from PIL import Image
+from database.database import *
 from pyrogram import filters
 from scripts import Scripted
 from pyrogram import Client as Clinton
