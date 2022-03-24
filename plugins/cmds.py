@@ -173,16 +173,15 @@ async def renamer(c,m,as_file=False):
        img = Image.open(thumb_image_path)
        img.resize((320, height))
        img.save(thumb_image_path, "JPEG")
-   c_time = time.time()
-   await c.send_document(
-   chat_id=update.chat.id,
-   document=new_file_name,
-   thumb=thumb_image_path,
-   caption="hello",
-   reply_to_message_id=m.reply_to_message.message_id,
-   progress=progress_for_pyrogram,
-   progress_args=(Scripted.UPLOAD_START, c, c_time))
-
+       c_time = time.time()
+       await c.send_document(
+       chat_id=update.chat.id,
+       document=new_file_name,
+       thumb=thumb_image_path,
+       caption="hello",
+       reply_to_message_id=m.reply_to_message.message_id,
+       progress=progress_for_pyrogram,
+       progress_args=(Scripted.UPLOAD_START, c, c_time))
    try:
        os.remove(d_location)
        os.remove(thumb_image_path)
