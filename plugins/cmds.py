@@ -188,7 +188,5 @@ async def renamer(c,m,as_file=False):
   except:
       pass
   await c.edit_message_text(
-      text=Scripted.UPLOAD_SUCCESS,
-      chat_id=m.chat.id,
-      message_id=d_msg.message_id
+      text=Scripted.UPLOAD_SUCCESS
   )
