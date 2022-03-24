@@ -98,12 +98,14 @@ async def rep_rename_call(c, m):
         get_mode = "Video"
     if (m.reply_to_message.reply_markup) and isinstance(m.reply_to_message.reply_markup, ForceReply):
       if get_mode == "File":
-        asyncio.create_task(renamer(c, m,))   
+        asyncio.create_task(renamer(c, m,as_file=True))
+      else:
+        asyncio.create_task(renamer(c, m)) 
     else:
         print('No media present')
 
 
-async def renamer(c,m):
+async def renamer(c,m,as_file=False):
   bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
   todown = bot_msg.reply_to_message # msg with media
   new_f_name = m.text # new name
