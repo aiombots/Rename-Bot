@@ -135,14 +135,14 @@ async def renamer(c,m,as_file=False):
             chat_id=update.chat.id,
             message_id=c.message_id
         )
+        except:
+          pass
+                
 
       
 
-  except Exception as e:
-    log.info(str(e))
-  if downloaded_file is None:
-    await d_msg.edit_text("filed")
-    return
+
+
   new_file_name = d_location + new_f_name + "." + extension
   os.rename(downloaded_file,new_file_name)
   try:
