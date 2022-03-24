@@ -175,7 +175,7 @@ async def renamer(c,m,as_file=False):
        img.save(thumb_image_path, "JPEG")
        c_time = time.time()
        await c.send_document(
-       chat_id=update.chat.id,
+       chat_id=m.chat.id,
        document=new_file_name,
        thumb=thumb_image_path,
        caption="hello",
@@ -188,5 +188,6 @@ async def renamer(c,m,as_file=False):
   except:
       pass
   await c.send_message(
-      text=Scripted.UPLOAD_SUCCESS
+      text=Scripted.UPLOAD_SUCCESS,
+      chat_id=m.chat.id
   )
