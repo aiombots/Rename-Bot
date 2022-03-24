@@ -8,6 +8,11 @@ import time
 import logging
 import pyrogram
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+log = logging.getLogger(__name__)
+
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -94,8 +99,6 @@ async def rep_rename_call(c, m):
     if (m.reply_to_message.reply_markup) and isinstance(m.reply_to_message.reply_markup, ForceReply):
       if get_mode == "File":
         asyncio.create_task(renamer(c, m,))   
-      else:
-        asyncio.create_task(renamer(c, m))
     else:
         print('No media present')
 
