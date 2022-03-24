@@ -185,6 +185,3 @@ async def renamer(c,m,as_file=False):
   try:
       os.remove(d_location)
       os.remove(thumb_image_path)
- 
-  
-
