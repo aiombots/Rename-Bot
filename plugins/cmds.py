@@ -182,15 +182,15 @@ async def renamer(c,m,as_file=False):
        reply_to_message_id=m.reply_to_message.message_id,
        progress=progress_for_pyrogram,
        progress_args=(Scripted.UPLOAD_START, c, c_time))
-   try:
-       os.remove(d_location)
-       os.remove(thumb_image_path)
-   except:
-       pass
-   await bot.edit_message_text(
-       text=Scripted.UPLOAD_SUCCESS,
-       chat_id=update.chat.id,
-       message_id=c.message_id
-   )
+  try:
+      os.remove(d_location)
+      os.remove(thumb_image_path)
+  except:
+      pass
+  await bot.edit_message_text(
+      text=Scripted.UPLOAD_SUCCESS,
+      chat_id=update.chat.id,
+      message_id=c.message_id
+  )
   
 
