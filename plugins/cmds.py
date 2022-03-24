@@ -140,18 +140,22 @@ async def renamer(c,m,as_file=False):
         pass
   new_file_name = d_location + new_f_name + "." + extension
   os.rename(downloaded_file,new_file_name)
+  logger.info(downloaded_file)
+  thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
   try:
     await d_msg.delete()
     u_msg = await m.reply_text("uplodimg",quote=True)
   except:  # whatever the error but still i need this message to upload 
     u_msg = await m.reply_text("Uploading",quote=True)
   # try to get thumb to use for later upload
-  thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
   if not os.path.exists(thumb_image_path):
-      mes = await thumb(m.from_user.id)
-      if mes is not None:
-          mesg = await c.get_messages(m.chat.id, mes.msg_id)
-          await mesg.download(file_name=thumb_image_path)
+                mes = await sthumb(m.from_user.id)
+                if mes != None:
+                    m = await bot.get_messages(m.chat.id, mes.msg_id)
+                    await c.download(file_name=thumb_image_path)
+                    thumb_image_path = thumb_image_path
+                else:
+                    thumb_image_path = None
 
   try:
      if as_file:
@@ -159,10 +163,9 @@ async def renamer(c,m,as_file=False):
      else:
        await uploader(c,new_file_name,m,u_msg)
   except Exception as er:
-     await u_msg.edit_text("filed to dow lod")
+     await u_msg.edit_text("filed to up lod")
      log.info(str(er))
      return
-
   await u_msg.delete()
   if os.path.exists(downloaded_file):
        os.remove(downloaded_file)
