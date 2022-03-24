@@ -137,12 +137,6 @@ async def renamer(c,m,as_file=False):
         )
         except:
           pass
-                
-
-      
-
-
-
   new_file_name = d_location + new_f_name + "." + extension
   os.rename(downloaded_file,new_file_name)
   try:
