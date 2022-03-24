@@ -97,9 +97,7 @@ async def rep_rename_call(c, m):
     else:
         print('No media present')
 
-async def renamer(c,m):
-  ##
-  bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
+bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
   todown = bot_msg.reply_to_message # msg with media
   new_f_name = m.text # new name
   media = todown.document or todown.video or todown.audio or todown.voice or todown.video_note or todown.animation
@@ -112,74 +110,53 @@ async def renamer(c,m):
   if len(new_f_name) > 64:
       await m.reply_text(text=f"Lɪᴍɪᴛs Oꜰ Tᴇʟᴇɢʀᴀᴍ Fɪʟᴇ Nᴀᴍᴇ Is 64 Cʜᴀʀᴇᴄᴛᴇʀs Oɴʟʏ")
       return
-  d_msg = await m.reply_text("Downloding")
-  d_location = Config.DOWNLOAD_LOCATION + "/"
+  d_msg = await m.reply_text(Translation.DOWNLOAD_MSG,True)
+  d_location = Config.DOWNLOAD_LOCATION + "/" + str(m.chat.id) + "/"
   d_time = time.time()
   try:
-    the_real_download_location = await bot.download_media(
-            message=update.reply_to_message,
-            file_name=download_location,
-            progress=progress_for_pyrogram,
-            progress_args=(Scripted.DOWNLOAD_START, c, c_time) )
-
-  if the_real_download_location is not None:
-            try:
-                await c.edit_message_text(
-                    text=Scripted.TRYING_TO_UPLOAD,
-                    chat_id=update.chat.id,
-                    message_id=c.message_id
-                )
-            except:
-                pass
-            new_file_name = d_location + new_f_name
-            os.rename(the_real_download_location, new_file_name)
-            logger.info(the_real_download_location)
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
-            if not os.path.exists(thumb_image_path):
-                mes = await sthumb(m.from_user.id)
-                if mes != None:
-                    me = await c.get_messages(update.chat.id, mes.msg_id)
-                    await m.download(new_f_name=thumb_image_path)
-                    thumb_image_path = thumb_image_path
-                else:
-                    thumb_image_path = None
-            else:
-                width = 0
-                height = 0
-                metadata = extractMetadata(createParser(thumb_image_path))
-                if metadata.has("width"):
-                    width = metadata.get("width")
-                if metadata.has("height"):
-                    height = metadata.get("height")
-                Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
-                img = Image.open(thumb_image_path)
-                img.resize((320, height))
-                img.save(thumb_image_path, "JPEG")
-            c_time = time.time()
-            await bot.send_document(
-            chat_id=update.chat.id,
-            document=new_file_name,
-            thumb=thumb_image_path,
-            caption=description,
-            reply_to_message_id=update.reply_to_message.message_id,
-            progress=progress_for_pyrogram,
-            progress_args=(Scripted.UPLOAD_START, c, c_time))
-
-            try:
-                os.remove(the_real_download_location)
-                os.remove(thumb_image_path)
-            except:
-                pass
-            await bot.edit_message_text(
-                  text=Scripted.UPLOAD_SUCCESS,
-                  chat_id=update.chat.id,
-                  message_id=c.message_id
+    downloaded_file = await c.download_media(
+      message=todown,
+      file_name=d_location,
+      progress=progress_for_pyrogram,
+      progress_args=(
+                Translation.DOWNLOAD_MSG,
+                d_msg,
+                d_time
             )
+      )
+  except ValueError:
+      downloaded_file = None
+  except Exception as e:
+    log.info(str(e))
+  if downloaded_file is None:
+    await d_msg.edit_text(Translation.DOWNLOAD_FAIL_MSG)
+    return
+  new_file_name = d_location + new_f_name + "." + extension
+  os.rename(downloaded_file,new_file_name)
+  try:
+    await d_msg.delete()
+    u_msg = await m.reply_text(Translation.UPLOAD_MSG,quote=True)
+  except:  # whatever the error but still i need this message to upload 
+    u_msg = await m.reply_text(Translation.UPLOAD_MSG,quote=True)
+  # try to get thumb to use for later upload
+  thumb_image_path = Config.DOWNLOAD_LOCATION + "/thumb/" + str(m.from_user.id) + ".jpg"
+  if not os.path.exists(thumb_image_path):
+      mes = await thumb(m.from_user.id)
+      if mes is not None:
+          mesg = await c.get_messages(m.chat.id, mes.msg_id)
+          await mesg.download(file_name=thumb_image_path)
 
-    else:
-        await m.send_message(
-            chat_id=update.chat.id,
-            text=Scripted.REPLY_TO_FILE,
-            reply_to_message_id=update.message_id)
+  try:
+     if as_file:
+       await uploader(c,new_file_name,m,u_msg,as_file=True)
+     else:
+       await uploader(c,new_file_name,m,u_msg)
+  except Exception as er:
+     await u_msg.edit_text(Translation.UPLOAD_FAIL_MSG)
+     log.info(str(er))
+     return
 
-
+  await u_msg.delete()
+  if os.path.exists(downloaded_file):
+       os.remove(downloaded_file)
+  await m.reply_text(Translation.UPLOAD_DONE_MSG,quote=True)
