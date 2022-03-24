@@ -29,6 +29,7 @@ else:
 from pyrogram import filters
 from scripts import Scripted
 from pyrogram import Client as Clinton
+from functions.display_progress import progress_for_pyrogram
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply, Message
 
 
