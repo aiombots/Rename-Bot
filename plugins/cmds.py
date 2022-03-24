@@ -127,19 +127,6 @@ async def renamer(c,m,as_file=False):
     file_name=d_location,
     progress=progress_for_pyrogram,
     progress_args=(Scripted.DOWNLOAD_START, d_msg, e) )
-  
-    
-  
-    
-      
-      
-      progress=progress_for_pyrogram,
-      progress_args=(
-                Scripted.DOWNLOAD_START,
-                d_msg,
-                d_time
-            )
-      )
   except ValueError:
       downloaded_file = None
   except Exception as e:
