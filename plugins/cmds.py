@@ -122,10 +122,17 @@ async def renamer(c,m,as_file=False):
   d_msg = await m.reply_text(Scripted.TRYING_TO_DOWNLOAD, True)
   d_location = Config.DOWNLOAD_LOCATION + "/"
   d_time = time.time()
-  try:
-    downloaded_file = await c.download_media(
-      message=todown,
-      file_name=d_location,
+  downloaded_file = await c.download_media(
+    message=todown,
+    file_name=d_location,
+    progress=progress_for_pyrogram,
+    progress_args=(Scripted.DOWNLOAD_START, d_msg, e) )
+  
+    
+  
+    
+      
+      
       progress=progress_for_pyrogram,
       progress_args=(
                 Scripted.DOWNLOAD_START,
