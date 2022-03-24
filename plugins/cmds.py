@@ -160,36 +160,38 @@ async def renamer(c,m,as_file=False):
                     thumb_image_path = thumb_image_path
                 else:
                     thumb_image_path = None
-            else:
-                width = 0
-                height = 0
-                metadata = extractMetadata(createParser(thumb_image_path))
-                if metadata.has("width"):
-                    width = metadata.get("width")
-                if metadata.has("height"):
-                    height = metadata.get("height")
-                Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
-                img = Image.open(thumb_image_path)
-                img.resize((320, height))
-                img.save(thumb_image_path, "JPEG")
-            c_time = time.time()
-            await c.send_document(
-            chat_id=update.chat.id,
-            document=new_file_name,
-            thumb=thumb_image_path,
-            caption="hello",
-            reply_to_message_id=m.reply_to_message.message_id,
-            progress=progress_for_pyrogram,
-            progress_args=(Scripted.UPLOAD_START, c, c_time))
 
-            try:
-                os.remove(d_location)
-                os.remove(thumb_image_path)
-            except:
-                pass
-            await bot.edit_message_text(
-                  text=Scripted.UPLOAD_SUCCESS,
-                  chat_id=update.chat.id,
-                  message_id=c.message_id
-            )
+  else:
+       width = 0
+       height = 0
+       metadata = extractMetadata(createParser(thumb_image_path))
+       if metadata.has("width"):
+           width = metadata.get("width")
+       if metadata.has("height"):
+           height = metadata.get("height")
+       Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
+       img = Image.open(thumb_image_path)
+       img.resize((320, height))
+       img.save(thumb_image_path, "JPEG")
+   c_time = time.time()
+   await c.send_document(
+   chat_id=update.chat.id,
+   document=new_file_name,
+   thumb=thumb_image_path,
+   caption="hello",
+   reply_to_message_id=m.reply_to_message.message_id,
+   progress=progress_for_pyrogram,
+   progress_args=(Scripted.UPLOAD_START, c, c_time))
+
+   try:
+       os.remove(d_location)
+       os.remove(thumb_image_path)
+   except:
+       pass
+   await bot.edit_message_text(
+       text=Scripted.UPLOAD_SUCCESS,
+       chat_id=update.chat.id,
+       message_id=c.message_id
+   )
+  
 
