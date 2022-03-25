@@ -30,4 +30,4 @@ class Config(object):
 
     BANNED_USERS = set(int(x) for x in os.environ.get("BANNED_USERS", "").split())
    
-    DB_CHANNEL = os.environ.get("BIN_CHANNEL")
+    DB_CHANNEL = int(os.environ.get("BIN_CHANNEL"))
