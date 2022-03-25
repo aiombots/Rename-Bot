@@ -121,9 +121,9 @@ async def rep_rename_call(c, m):
   
   if downloaded_file is not None:
     try:
-        await d_msg.edit(
-            text=Scripted.TRYING_TO_UPLOAD
-        )
+       df = await d_msg.edit(
+                text=Scripted.TRYING_TO_UPLOAD
+           )
     except:
         pass
   new_file_name = d_location + new_f_name + "." + extension
@@ -156,10 +156,10 @@ async def rep_rename_call(c, m):
        chat_id=m.chat.id,
        document=new_file_name,
        thumb=thumb_image_path,
-       caption=new_file_name,
+       caption="thank You for using me",
        reply_to_message_id=m.reply_to_message.message_id,
        progress=progress_for_pyrogram,
-       progress_args=(Scripted.UPLOAD_START, c, c_time))
+       progress_args=(Scripted.UPLOAD_START, df, c_time))
   try:
       os.remove(d_location)
       os.remove(thumb_image_path)
