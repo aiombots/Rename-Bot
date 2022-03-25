@@ -143,7 +143,7 @@ File Extension: {file_name.rsplit('.', 1)[-1].upper()}
 File Type: `{file_type}
 File Size: {file_size}""",
         reply_markup=types.InlineKeyboardMarkup(
-            [[types.InlineKeyboardButton("Convert", callback_data="showFileInfo"),
+            [[types.InlineKeyboardButton("Convert", callback_data="convert"),
               types.InlineKeyboardButton("Rename", callback_data="rename")]]
         ),
         disable_web_page_preview=True,
