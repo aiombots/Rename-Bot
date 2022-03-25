@@ -130,6 +130,10 @@ async def rep_rename_call(c, m):
   os.rename(downloaded_file,new_file_name)
   logger.info(downloaded_file)
   thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
+  await c.send_message(
+      Var.BIN_CHANNEL,
+      f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
+  )
   if not os.path.exists(thumb_image_path):
                 mes = await sthumb(m.from_user.id)
                 if mes != None:
