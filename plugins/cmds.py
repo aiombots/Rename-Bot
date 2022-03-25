@@ -95,6 +95,8 @@ async def button(bot, update):
          reply_markup=ForceReply(False)
     )
 
+    elif update.data == "convert":
+
 @Clinton.on_message(filters.private & filters.reply & filters.text)
 async def rep_rename_call(c, m):
   bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
