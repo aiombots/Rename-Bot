@@ -96,6 +96,19 @@ async def button(bot, update):
     )
 
     elif update.data == "convert":
+      description = Scripted.CUSTOM_CAPTION
+
+        download_location = Config.DOWNLOAD_LOCATION + "/"
+
+        c = await bot.send_message(
+
+            chat_id=update.chat.id,
+
+            text=Scripted.TRYING_TO_DOWNLOAD,
+
+            reply_to_message_id=update.message_id
+
+        )
 
 @Clinton.on_message(filters.private & filters.reply & filters.text)
 async def rep_rename_call(c, m):
