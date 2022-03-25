@@ -146,12 +146,6 @@ async def renamer(c,m,as_file=False):
   os.rename(downloaded_file,new_file_name)
   logger.info(downloaded_file)
   thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
-  try:
-    await d_msg.delete()
-    u_msg = await m.reply_text("uplodimg",quote=True)
-  except:  # whatever the error but still i need this message to upload 
-    u_msg = await m.reply_text("Uploading",quote=True)
-  # try to get thumb to use for later upload
   if not os.path.exists(thumb_image_path):
                 mes = await sthumb(m.from_user.id)
                 if mes != None:
@@ -178,12 +172,11 @@ async def renamer(c,m,as_file=False):
        chat_id=m.chat.id,
        document=new_file_name,
        thumb=thumb_image_path,
-       caption="hello",
+       caption=new_file_name + "a bot by @aiom_bots",
        reply_to_message_id=m.reply_to_message.message_id,
        progress=progress_for_pyrogram,
        progress_args=(Scripted.UPLOAD_START, c, c_time))
   try:
-      await u_msg.message.delete()
       os.remove(d_location)
       os.remove(thumb_image_path)
   except:
