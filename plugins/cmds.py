@@ -150,7 +150,7 @@ async def renamer(c,m,as_file=False):
                 mes = await sthumb(m.from_user.id)
                 if mes != None:
                     m = await c.get_messages(m.chat.id, mes.msg_id)
-                    await c.download(file_name=thumb_image_path)
+                    await m.download(file_name=thumb_image_path)
                     thumb_image_path = thumb_image_path
                 else:
                     thumb_image_path = None
