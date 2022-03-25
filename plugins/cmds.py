@@ -183,6 +183,7 @@ async def renamer(c,m,as_file=False):
        progress=progress_for_pyrogram,
        progress_args=(Scripted.UPLOAD_START, c, c_time))
   try:
+      await u_msg.message.delete()
       os.remove(d_location)
       os.remove(thumb_image_path)
   except:
