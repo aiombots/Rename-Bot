@@ -135,10 +135,8 @@ async def renamer(c,m,as_file=False):
   
   if downloaded_file is not None:
     try:
-        await c.edit_message_text(
-            text=Scripted.TRYING_TO_UPLOAD,
-            chat_id=update.chat.id,
-            message_id=c.message_id
+        await d_msg.edit(
+            text=Scripted.TRYING_TO_UPLOAD
         )
     except:
         pass
