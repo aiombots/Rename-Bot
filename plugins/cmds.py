@@ -103,7 +103,8 @@ async def button(bot, update):
               text=Scripted.TRYING_TO_DOWNLOAD,
               reply_to_message_id=update.message_id
           )
-          c_time = time.time()
+      c_time = time.time()
+          
           the_real_download_location = await bot.download_media(
               message=update.reply_to_message,
               file_name=download_location,
