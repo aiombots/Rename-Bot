@@ -138,6 +138,7 @@ async def button(bot, update):
                       )
                   )
               logger.info(thumb_image_path)
+              c_time = time.time()
               metadata = extractMetadata(createParser(thumb_image_path))
               if metadata.has("width"):
                   width = metadata.get("width")
@@ -147,7 +148,6 @@ async def button(bot, update):
               img = Image.open(thumb_image_path)
               img.resize((90, height))
               img.save(thumb_image_path, "JPEG")
-              c_time = time.time()
               await bot.send_video(
                   chat_id=update.chat.id,
                   video=the_real_download_location,
