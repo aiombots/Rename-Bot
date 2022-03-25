@@ -85,17 +85,69 @@ async def upgra(bot, update):
           reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text='🔐 ᴄʟᴏꜱᴇ', callback_data='DM') ] ] ) )
 
 @Clinton.on_callback_query()
-async def button(bot, update):
-    if update.data == "rename":
-     await update.message.delete(True)
-     await bot.send_message(
-         chat_id=update.message.chat.id,
+async def button(c, m):
+    if m.data == "rename":
+     await m.message.delete(True)
+     await c.send_message(
+         chat_id=m.message.chat.id,
          text="now send me a new name for the file",
-         reply_to_message_id=update.message.reply_to_message.message_id,
+         reply_to_message_id=m.message.reply_to_message.message_id,
          reply_markup=ForceReply(False)
     )
 
-
+    elif m.data == "Convert":
+       usr_msg = m.message.reply_to_message
+       d_msg = await m.message.edit_text("triying to Download")
+       d_location = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + "/"
+       d_time = time.time()
+       try:
+         downloaded_file = await c.download_media(
+           message=usr_msg,
+           file_name=d_location,
+           progress=progress_for_pyrogram,
+           progress_args=(
+                     Scripted.TRYING_TO_DOWNLOAD,
+                     d_msg,
+                     d_time
+                 )
+           )
+       except ValueError:
+           downloaded_file = None
+       except Exception as e:
+         logger.info(str(e))
+       if downloaded_file is None:
+         await d_msg.edit_text("file")
+         return
+       try:
+         await d_msg.delete()
+         u_msg = await usr_msg.reply_text(Scripted.UPLOAD_START,quote=True)
+       except:  # whatever the error but still i need this message to upload 
+         u_msg = await usr_msg.reply_text(Scripted.UPLOAD_START,quote=True)
+  # try to get thumb to use later while uploading..
+       thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+       if not os.path.exists(thumb_image_path):
+           mes = await thumb(m.from_user.id)
+           if mes is not None:
+               mesg = await c.get_messages(m.message.chat.id, mes.msg_id)
+               await mesg.download(file_name=thumb_image_path)
+       try:
+          await bot.send_video(
+                chat_id=m.chat.id,
+                video=the_real_download_location,
+                duration=duration,
+                width=width,
+                height=height,
+                supports_streaming=True,
+                thumb=thumb_image_path,
+                reply_to_message_id=update.reply_to_message.message_id,
+                progress=progress_for_pyrogram,
+                progress_args=(
+                    Scripted.UPLOAD_START,
+                    c,
+                    c_time
+                )
+            )
+   
 
 @Clinton.on_message(filters.private & filters.reply & filters.text)
 async def rep_rename_call(c, m):
