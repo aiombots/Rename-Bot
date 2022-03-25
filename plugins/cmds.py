@@ -162,8 +162,6 @@ async def rep_rename_call(c, m):
        progress_args=(Scripted.UPLOAD_START, df, c_time))
         except Exception as er:
           await df.edit("filed")
-          
-
   try:
       await df.delete()
       os.remove(d_location)
