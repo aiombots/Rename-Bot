@@ -135,8 +135,8 @@ async def renamer(c,m,as_file=False):
   
   if downloaded_file is not None:
     try:
-        await bot.edit_message_text(
-            text="filed",
+        await c.edit_message_text(
+            text=Scripted.TRYING_TO_UPLOAD,
             chat_id=update.chat.id,
             message_id=c.message_id
         )
@@ -172,7 +172,7 @@ async def renamer(c,m,as_file=False):
        chat_id=m.chat.id,
        document=new_file_name,
        thumb=thumb_image_path,
-       caption=new_file_name + "a bot by @aiom_bots",
+       caption=new_file_name,
        reply_to_message_id=m.reply_to_message.message_id,
        progress=progress_for_pyrogram,
        progress_args=(Scripted.UPLOAD_START, c, c_time))
