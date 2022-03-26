@@ -122,7 +122,7 @@ async def rep_rename_call(c, m):
 async def start(bot, update):
           await bot.send_message(
           chat_id=update.chat.id,
-          text=Scripted.START_TEXT.format(updete.from_user.mention),
+          text=Scripted.START_TEXT.format(update.from_user.mention),
           parse_mode="html",
           disable_web_page_preview=True,
           reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text='⭕ Cʜᴀɴɴᴇʟ ⭕', url=f'https://t.me/{Config.UPDATE_CHANNEL}'),
