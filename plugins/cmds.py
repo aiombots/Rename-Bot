@@ -254,5 +254,3 @@ async def button(c, m):
                      text=Scripted.UPLOAD_SUCCESS,
                      chat_id=m.chat.id
                  )
-  
-
