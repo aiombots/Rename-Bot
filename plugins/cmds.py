@@ -125,15 +125,11 @@ async def start(bot, update):
           text=Scripted.START_TEXT.format(update.from_user.mention),
           parse_mode="html",
           disable_web_page_preview=True,
-          reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text='⭕ Cʜᴀɴɴᴇʟ ⭕', url=f'https://t.me/{Config.UPDATE_CHANNEL}'),
-                                                 InlineKeyboardButton(text='⭕ Sᴜᴘᴘᴏʀᴛ ⭕', url=f'https://t.me/{Config.UPDATE_GROUP}') ],
-                                               [ InlineKeyboardButton(text='👮 DᴇvᴇlopᴇR', url='https://t.me/TheTeleRoid'),
-                                                 InlineKeyboardButton(text='🚸 Pᴏweʀᴇd By', url='https://t.me/MoviesFlixers_DL') ],
-                                               [ InlineKeyboardButton(text='🔐 Cʟᴏꜱᴇ 🔐', callback_data='DM') ] ] ) )
+          reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
 
 
 
-@Clinton.on_message(filters.command(["help"]))
+@Clinton.on_message(filters.command(["helvp"]))
 async def helpme(bot, update):
           await bot.send_message(
           chat_id=update.chat.id,
@@ -144,7 +140,7 @@ async def helpme(bot, update):
 
 
 
-@Clinton.on_message(filters.command(["about"]))
+@Clinton.on_message(filters.command(["aboufft"]))
 async def abot(bot, update):
           await bot.send_message(
           chat_id=update.chat.id,
@@ -155,7 +151,7 @@ async def abot(bot, update):
 
 
 
-@Clinton.on_message(filters.command(["upgrade"]))
+@Clinton.on_message(filters.command(["upgradef"]))
 async def upgra(bot, update):
           await bot.send_message(
           chat_id=update.chat.id,
@@ -177,3 +173,28 @@ async def button(c, m):
 
     elif m.data == "Convert":
        await m.message.edit("Coming Soon")
+
+    elif m.data == "about":
+       await m.message.edit(Scripted.ABOUT_TEXT,
+                            parse_mode="html",
+                            disable_web_page_preview=True,
+                            reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='« Bᴀᴄᴋ', callback_data='home') ] ] ) )
+
+    elif m.data == "help":
+       await m.message.edit(Scripted.HELP_TEXT,
+                            parse_mode="html",
+                            disable_web_page_preview=True,
+                            reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='« Bᴀᴄᴋ', callback_data='home') ] ] ) )
+
+    elif m.data == "home":
+       await m.message.edit(Scripted.START_TEXT,
+                            parse_mode="html",
+                            disable_web_page_preview=True,
+                            reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
+
+    elif m.data == "close":
+       await m.message.delete()
+
+
+
+                                                              
