@@ -247,9 +247,7 @@ async def button(c, m):
                  reply_to_message_id=m.reply_to_message.message_id,
                  progress=progress_for_pyrogram,
                  progress_args=(Scripted.UPLOAD_START, df, c_time))
-                 await df.delete()
-                 os.remove(d_location)
-                 os.remove(thumb_image_path)        
-                 await c.send_message(
-                     text=Scripted.UPLOAD_SUCCESS,
-                     chat_id=m.chat.id)
+         try:
+             await df.delete()
+             os.remove(d_location)
+             os.remove(thumb_image_path)       
