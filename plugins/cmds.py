@@ -227,28 +227,7 @@ async def button(c, m):
 
                                 )
                             )
-                            
-                            
-                            
-                            
-                  
-            else:
-                 width = 0
-                 height = 0
-                 duration = 0
-                 metadata = extractMetadata(createParser(d_location))
-                 if metadata.has("duration"):
-                   duration = metadata.get('duration').seconds
-                 thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-                 if not os.path.exists(thumb_image_path):
-                   thumb_image_path = await take_screen_shot(
-                     d_location,
-                     os.path.dirname(d_location),
-                     random.randint(
-                       0,
-                       duration - 1
-                       )
-                     )
+                     
                  metadata = extractMetadata(createParser(thumb_image_path))
                  if metadata.has("width"):
                      width = metadata.get("width")
