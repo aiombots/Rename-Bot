@@ -122,19 +122,12 @@ async def button(c, m):
 
            )
             if not os.path.exists(thumb_image_path):
-
                          mes = await sthumb(m.from_user.id)
-
                          if mes != None:
-
                              h = await c.get_messages(m.chat.id, mes.msg_id)
-
                              await h.download(file_name=thumb_image_path)
-
                              thumb_image_path = thumb_image_path
-
                          else:
-
                              thumb_image_path = None
             
             
