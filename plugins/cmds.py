@@ -252,5 +252,4 @@ async def button(c, m):
                  os.remove(thumb_image_path)        
                  await c.send_message(
                      text=Scripted.UPLOAD_SUCCESS,
-                     chat_id=m.chat.id
-                 )
+                     chat_id=m.chat.id)
