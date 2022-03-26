@@ -135,24 +135,20 @@ async def button(c, m):
                 )
               except:
                   pass
-                new_file_name = d_location + media_filename + "." + extension
-       
-        new_file_name = d_location + media_filename + "." + extension
-        os.rename(downloaded_file,new_file_name)
-        logger.info(downloaded_file)
-        thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
-        await c.send_message(
-            Config.DB_CHANNEL,
-            f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
-       )
-       if not os.path.exists(thumb_image_path):
-                     mes = await sthumb(m.from_user.id)
-                     if mes != None:
-                         h = await c.get_messages(m.chat.id, mes.msg_id)
-                         await h.download(file_name=thumb_image_path)
-                         thumb_image_path = thumb_image_path
-                     else:
-                         thumb_image_path = None
+                logger.info(downloaded_file)
+                thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
+                await c.send_message(
+                    Config.DB_CHANNEL,
+                    f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
+                )
+                if not os.path.exists(thumb_image_path):
+                         mes = await sthumb(m.from_user.id)
+                         if mes != None:
+                             h = await c.get_messages(m.chat.id, mes.msg_id)
+                             await h.download(file_name=thumb_image_path)
+                             thumb_image_path = thumb_image_path
+                         else:
+                             thumb_image_path = None
 
        else:
             metadata = extractMetadata(createParser(thumb_image_path))
@@ -167,7 +163,7 @@ async def button(c, m):
             c_time = time.time()
             await c.send_video(
             chat_id=m.chat.id,
-            video=new_file_name,
+            video=d_location,
             duration=duration,
             width=width,
             height=height,
