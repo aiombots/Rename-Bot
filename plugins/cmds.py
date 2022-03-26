@@ -116,7 +116,6 @@ async def button(c, m):
                      text=Scripted.TRYING_TO_UPLOAD
                 )
            
-                logger.info(downloaded_file)
                 thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
                 await c.send_message(
                     Config.DB_CHANNEL,
