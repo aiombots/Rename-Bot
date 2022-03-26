@@ -129,6 +129,7 @@ async def button(c, m):
                              thumb_image_path = thumb_image_path
                          else:
                              thumb_image_path = None
+                            
             
             
            
