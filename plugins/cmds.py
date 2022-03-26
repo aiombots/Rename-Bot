@@ -130,7 +130,7 @@ async def button(c, m):
                          else:
                              thumb_image_path = None
                   
-         else:
+         try:
               width = 0
               height = 0
               duration = 0
@@ -226,7 +226,6 @@ async def rep_rename_call(c, m):
                     thumb_image_path = thumb_image_path
                 else:
                     thumb_image_path = None
-                    h
 
   else:
        width = 0
