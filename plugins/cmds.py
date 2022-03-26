@@ -133,8 +133,6 @@ async def button(c, m):
                   duration - 1
                   )
                 )
-              except:
-                  pass
                 logger.info(downloaded_file)
                 thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
                 await c.send_message(
