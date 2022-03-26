@@ -176,78 +176,54 @@ async def button(c, m):
     )
 
     elif m.data == "Convert":
-       await m.message.delete(True)
-       bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
-       todown = bot_msg.reply_to_message # msg with media
-       media = todown.document or todown.video or todown.audio or todown.voice or todown.video_note or todown.animation
-       media_filename = media.file_name
-       d_msg = await m.reply_text(Scripted.TRYING_TO_DOWNLOAD, True)
+       usr_msg = m.message.reply_to_message
+       d_msg = await m.message.edit_text("Downloading")
        d_location = Config.DOWNLOAD_LOCATION + "/"
        d_time = time.time()
-       downloaded_file = await c.download_media(
-         message=todown,
-         file_name=d_location,
-         progress=progress_for_pyrogram,
-         progress_args=(Scripted.DOWNLOAD_START, d_msg, d_time) )
-  
-       if downloaded_file is not None:
-         try:
-            df = await d_msg.edit(
-                     text=Scripted.TRYING_TO_UPLOAD
-                )
-            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
-            await c.send_message(
-                    Config.DB_CHANNEL,
-                    f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
-
+       try:
+         downloaded_file = await c.download_media(
+           message=usr_msg,
+           file_name=d_location,
+           progress=progress_for_pyrogram,
+           progress_args=(
+                     Translation.DOWNLOAD_MSG,
+                     d_msg,
+                     d_time
+                 )
            )
-            if not os.path.exists(thumb_image_path):
-                         mes = await sthumb(m.from_user.id)
-                         if mes != None:
-                             h = await c.get_messages(m.chat.id, mes.msg_id)
-                             await h.download(file_name=thumb_image_path)
-                             thumb_image_path = thumb_image_path
-                         else:
-                             thumb_image_path = None
-                            else:
-                              width = 0
-                              height = 0
-                              duration = 0
-                              metadata = extractMetadata(createParser(d_location))
-                              if metadata.has("duration"):
-                                duration = metadata.get('duration').seconds
-                              thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-                              if not os.path.exists(thumb_image_path):
-                                thumb_image_path = await take_screen_shot(
-                                  d_location,
-                                  os.path.dirname(d_location),
-                                  random.randint(
-                                    0,
-                                    duration - 1
+       except ValueError:
+           downloaded_file = None
+       except Exception as e:
+         logger.info(str(e))
+       if downloaded_file is None:
+         await d_msg.edit_text("fuled")
+         return
+       try:
+         await d_msg.delete()
+         u_msg = await usr_msg.reply_text("Uploading")
+       except:  # whatever the error but still i need this message to upload 
+         u_msg = await usr_msg.reply_text("Uploading")
+        # try to get thumb to use later while uploading..
+       thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
+       if not os.path.exists(thumb_image_path):
+           mes = await thumb(m.from_user.id)
+           if mes is not None:
+               mesg = await c.get_messages(m.message.chat.id, mes.msg_id)
+               await mesg.download(file_name=thumb_image_path)
 
-                                )
-                            )
-                            
-                                metadata = extractMetadata(createParser(thumb_image_path))
-                               if metadata.has("width"):
-                                   width = metadata.get("width")
-                               if metadata.has("height"):
-                                   height = metadata.get("height")
-                               Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
-                               img = Image.open(thumb_image_path)
-                               img.resize((320, height))
-                               img.save(thumb_image_path, "JPEG")
-                               c_time = time.time()
-                               await c.send_video(
-                               chat_id=m.chat.id,
-                               video=d_location,
-                               duration=duration,
-                               width=width,
-                               height=height,
-                               thumb=thumb_image_path,
-                               reply_to_message_id=m.reply_to_message.message_id,
-                               progress=progress_for_pyrogram,
-                               progress_args=(Scripted.UPLOAD_START, df, c_time)) 
-                                try:
-                                  await df.delete()
-                                  os.remove(d_location)
+       try:
+         c_time = time.time()
+         await c.send_video(
+             chat_id=m.message.chat.id,
+             video=d_location,
+             duration=duration,
+             width=width,
+             height=height,
+             thumb=thumb_image_path,
+             reply_to_message_id=m.reply_to_message.message_id,
+             progress=progress_for_pyrogram,
+             progress_args=(Scripted.UPLOAD_START, u_msg, c_time))
+
+
+
+           
