@@ -43,7 +43,8 @@ async def progress_for_pyrogram(
             ''.join(["▢" for i in range(20 - math.floor(percentage / 5))]))
 
 
-        tmp = progress + Scripted.PROGRESS_DIS.format(
+        tmp = Scripted.PROGRESS_DIS.format(
+                  ud_type,
                   round(percentage, 2),
                   humanbytes(current),
                   humanbytes(total),
@@ -53,7 +54,7 @@ async def progress_for_pyrogram(
 
         try:
             await message.edit(
-                text="{}\n{}".format(ud_type, tmp))
+                text="{}".format(tmp))
 
         except:
             pass
