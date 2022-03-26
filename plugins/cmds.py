@@ -187,7 +187,7 @@ async def button(c, m):
                             reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='« Bᴀᴄᴋ', callback_data='home') ] ] ) )
 
     elif m.data == "home":
-       await m.message.edit(Scripted.START_TEXT,
+       await m.message.edit(Scripted.START_TEXT.format(m.from_user.mention),
                             parse_mode="html",
                             disable_web_page_preview=True,
                             reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
