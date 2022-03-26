@@ -227,6 +227,9 @@ async def button(c, m):
 
                                 )
                             )
+                                metadata = extractMetadata(createParser(thumb_image_path))
+
+                 if metadata.has("width"):
                      
                  metadata = extractMetadata(createParser(thumb_image_path))
                  if metadata.has("width"):
