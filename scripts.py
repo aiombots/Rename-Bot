@@ -2,7 +2,7 @@ class Scripted(object):
 
 
     PROGRESS_DIS = """\n
-╭───[**🔅Progress Bar🔅**]───⍟
+╭───[{}]───⍟
 │
 ├<b>📁 : {1} | {2}</b>
 │
@@ -57,8 +57,8 @@ class Scripted(object):
     TRYING_TO_DOWNLOAD = "<b>Pʀᴏᴄᴇssɪɴɢ....</b>"
     UPLOAD_SUCCESS = "<u><i>Tʜᴀɴᴋs Fᴏʀ Usɪɴɢ ᴍᴇ❤</i></u>"
     REPLY_TO_MEDIA = "<i>Reply to Media For Converting with Command /convert</i>"
-    UPLOAD_START = "<i>📤 Uploading Your File Please wait...</i>\n"
-    DOWNLOAD_START = "<i>📥 Downloading Your File Please wait...</i>\n"
+    UPLOAD_START = "<i>Uploading</i>\n"
+    DOWNLOAD_START = "<i>Downloading</i>\n"
     JOIN_NOW_TEXT = "Jᴏɪɴ Mʏ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Usᴇ Tʜɪs Bᴏᴛ</b>"
     REPLY_TO_FILE = "<b>Reply to that media with /rename new name .ext</i>"
     CONTACT_MY_DEVELOPER = "<i>Something Went Wrong! Contact in Support @AIOM_BOTS</i>"
