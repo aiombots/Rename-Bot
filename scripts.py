@@ -47,20 +47,26 @@ class Scripted(object):
 ╰──────[Thanks 😊]───⍟"""
 
     CUSTOM_CAPTION = "<i>{}</i>"
-    ACCESS_DENIED = "<b>¥ou Are Banned 🚫</b>"
-    BANNED_USER_TEXT = "<i>¥ou are Banned 🚫</i>"
-    TRYING_TO_UPLOAD = "<i>Trying to Upload.....</i>"
-    CURRENT_THUMBNAIL = "<i>𝐘𝐨𝐮𝐫 𝐂𝐮𝐫𝐫𝐞𝐧𝐭 𝐓𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 🎭</i>"
-    THUMBNAIL_SAVED = "<i>𝐘𝐨𝐮𝐫 𝐓𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 𝐒𝐚𝐯𝐞𝐝 ✅</i>"
-    THUMBNAIL_DELETED = "<i>𝐘𝐨𝐮𝐫 𝐓𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 𝐃𝐞𝐥𝐞𝐭𝐞𝐝 ✅</i>"
-    NO_THUMBNAIL_FOUND = "<i>(Konsi Gaali Chahiye)</i>"
-    TRYING_TO_DOWNLOAD = "<i>Trying to Download....</i>"
-    UPLOAD_SUCCESS = "<u><i>Tʜᴀɴᴋs Fᴏʀ Usɪɴɢ ᴍᴇ❤ Join @TheTeleRoid</i></u>"
+    ACCESS_DENIED = "<b>Aᴄᴄᴇꜱꜱ ᴅᴇɴɪᴇᴅ 🚸</b>"
+    BANNED_USER_TEXT = "<b>Aᴄᴄᴇꜱꜱ ᴅᴇɴɪᴇᴅ 🚸</b>"
+    TRYING_TO_UPLOAD = "<b>Uᴩʟᴏᴅɪɴɢ.....</b>"
+    CURRENT_THUMBNAIL = "Yᴏᴜ'ʀᴇ Cᴜʀʀᴇɴᴛ Tʜᴜᴍʙɴᴀɪʟ"
+    THUMBNAIL_SAVED = "Tʜᴜᴍʙɴᴀɪʟ Sᴀᴠᴇᴅ Sᴜᴄᴄᴇssꜰᴜʟʟʏ  ✓"
+    THUMBNAIL_DELETED = "Tʜᴜᴍʙɴᴀɪʟ Dᴇʟᴇᴛᴇᴅ Sᴜᴄᴄᴇssꜰᴜʟʟʏ  ✓"
+    NO_THUMBNAIL_FOUND = "No Thumbnail Found"
+    TRYING_TO_DOWNLOAD = "<b>Pʀᴏᴄᴇssɪɴɢ....</b>"
+    UPLOAD_SUCCESS = "<u><i>Tʜᴀɴᴋs Fᴏʀ Usɪɴɢ ᴍᴇ❤</i></u>"
     REPLY_TO_MEDIA = "<i>Reply to Media For Converting with Command /convert</i>"
     UPLOAD_START = "<i>📤 Uploading Your File Please wait...</i>\n"
     DOWNLOAD_START = "<i>📥 Downloading Your File Please wait...</i>\n"
-    JOIN_NOW_TEXT = "<code>First Join My Updates Channel to Use Me</code>"
-    REPLY_TO_FILE = "<i>Reply to that media with /rename new name .ext</i>"
-    CONTACT_MY_DEVELOPER = "<i>Something Went Wrong! Contact in Support Group @TeleRoid14 for Help. </i>"
-    START_TEXT = "<i>This is a Fastest File Renamer and Converter Bot With Permanant Thumbnail Support💯</i>"
+    JOIN_NOW_TEXT = "Jᴏɪɴ Mʏ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Usᴇ Tʜɪs Bᴏᴛ</b>"
+    REPLY_TO_FILE = "<b>Reply to that media with /rename new name .ext</i>"
+    CONTACT_MY_DEVELOPER = "<i>Something Went Wrong! Contact in Support @AIOM_BOTS</i>"
+    START_TEXT = """<b>Hᴇʟʟᴏ</b> 👋 <b>,  {} ♡
+
+Tʜɪꜱ Iꜱ A Fᴀꜱᴛᴇꜱᴛ Fɪʟᴇ Rᴇɴᴀᴍᴇ Bᴏᴛ Wɪᴛʜ Fɪʟᴇ Cᴏɴᴠᴇʀᴛᴇʀ Fᴜᴛᴜʀᴇ & Pᴇʀᴍᴀɴᴇɴᴛ Tʜᴜᴍʙɴᴀɪʟ Sᴜᴘᴘᴏʀᴛ
+
+Pʀᴇꜱꜱ Hᴇʟᴩ Bᴜᴛᴛᴏɴ Fᴏʀ Mᴏʀᴇ Iɴꜰᴏ...
+
+Pᴏᴡᴇʀᴇᴅ Bʏ : @AIOM_BOTS</b>"""
     UPGRADE_TEXT = "<b>To upgrade your subscription <a href='https://t.me/HelplessBoi'>[Click Here]</a></b>"
