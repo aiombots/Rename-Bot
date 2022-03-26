@@ -121,18 +121,27 @@ async def button(c, m):
                     f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
 
            )
+            if not os.path.exists(thumb_image_path):
+
+                         mes = await sthumb(m.from_user.id)
+
+                         if mes != None:
+
+                             h = await c.get_messages(m.chat.id, mes.msg_id)
+
+                             await h.download(file_name=thumb_image_path)
+
+                             thumb_image_path = thumb_image_path
+
+                         else:
+
+                             thumb_image_path = None
+            
             
            
                 
                 
-                if not os.path.exists(thumb_image_path):
-                         mes = await sthumb(m.from_user.id)
-                         if mes != None:
-                             h = await c.get_messages(m.chat.id, mes.msg_id)
-                             await h.download(file_name=thumb_image_path)
-                             thumb_image_path = thumb_image_path
-                         else:
-                             thumb_image_path = None
+                
 
        else:
             width = 0
