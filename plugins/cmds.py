@@ -130,53 +130,53 @@ async def button(c, m):
                          else:
                              thumb_image_path = None
                   
+            else:
+                 width = 0
+                 height = 0
+                 duration = 0
+                 metadata = extractMetadata(createParser(d_location))
+                 if metadata.has("duration"):
+                   duration = metadata.get('duration').seconds
+                 thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+                 if not os.path.exists(thumb_image_path):
+                   thumb_image_path = await take_screen_shot(
+                     d_location,
+                     os.path.dirname(d_location),
+                     random.randint(
+                       0,
+                       duration - 1
+                       )
+                     )
+                 metadata = extractMetadata(createParser(thumb_image_path))
+                 if metadata.has("width"):
+                     width = metadata.get("width")
+                 if metadata.has("height"):
+                     height = metadata.get("height")
+                 Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
+                 img = Image.open(thumb_image_path)
+                 img.resize((320, height))
+                 img.save(thumb_image_path, "JPEG")
+                 c_time = time.time()
+                 await c.send_video(
+                 chat_id=m.chat.id,
+                 video=d_location,
+                 duration=duration,
+                 width=width,
+                 height=height,
+                 thumb=thumb_image_path,
+                 reply_to_message_id=m.reply_to_message.message_id,
+                 progress=progress_for_pyrogram,
+                 progress_args=(Scripted.UPLOAD_START, df, c_time))
             try:
-                width = 0
-                height = 0
-                duration = 0
-                metadata = extractMetadata(createParser(d_location))
-                if metadata.has("duration"):
-                  duration = metadata.get('duration').seconds
-                thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-                if not os.path.exists(thumb_image_path):
-                  thumb_image_path = await take_screen_shot(
-                    d_location,
-                    os.path.dirname(d_location),
-                    random.randint(
-                      0,
-                      duration - 1
-                      )
-                    )
-                metadata = extractMetadata(createParser(thumb_image_path))
-                if metadata.has("width"):
-                    width = metadata.get("width")
-                if metadata.has("height"):
-                    height = metadata.get("height")
-                Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
-                img = Image.open(thumb_image_path)
-                img.resize((320, height))
-                img.save(thumb_image_path, "JPEG")
-                c_time = time.time()
-                await c.send_video(
-                chat_id=m.chat.id,
-                video=d_location,
-                duration=duration,
-                width=width,
-                height=height,
-                thumb=thumb_image_path,
-                reply_to_message_id=m.reply_to_message.message_id,
-                progress=progress_for_pyrogram,
-                progress_args=(Scripted.UPLOAD_START, df, c_time))
-         try:
-           await df.delete()
-           os.remove(d_location)
-           os.remove(thumb_image_path)
-       except:
-           pass
-       await c.send_message(
-           text=Scripted.UPLOAD_SUCCESS,
-           chat_id=m.chat.id
-       )
+                await df.delete()
+                os.remove(d_location)
+                os.remove(thumb_image_path)
+            except:
+                pass
+            await c.send_message(
+                text=Scripted.UPLOAD_SUCCESS,
+                chat_id=m.chat.id
+            )
    
 
 @Clinton.on_message(filters.private & filters.reply & filters.text)
