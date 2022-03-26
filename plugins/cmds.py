@@ -115,8 +115,7 @@ async def button(c, m):
             df = await d_msg.edit(
                      text=Scripted.TRYING_TO_UPLOAD
                 )
-            f
-                logger.info(d_location)
+            logger.info(d_location)
                 width = 0
                 height = 0
                 duration = 0
