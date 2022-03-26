@@ -228,26 +228,22 @@ async def button(c, m):
                                 )
                             )
                                 metadata = extractMetadata(createParser(thumb_image_path))
-
-                 if metadata.has("width"):
-                     
-                 metadata = extractMetadata(createParser(thumb_image_path))
-                 if metadata.has("width"):
-                     width = metadata.get("width")
-                 if metadata.has("height"):
-                     height = metadata.get("height")
-                 Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
-                 img = Image.open(thumb_image_path)
-                 img.resize((320, height))
-                 img.save(thumb_image_path, "JPEG")
-                 c_time = time.time()
-                 await c.send_video(
-                 chat_id=m.chat.id,
-                 video=d_location,
-                 duration=duration,
-                 width=width,
-                 height=height,
-                 thumb=thumb_image_path,
-                 reply_to_message_id=m.reply_to_message.message_id,
-                 progress=progress_for_pyrogram,
-                 progress_args=(Scripted.UPLOAD_START, df, c_time))       
+                               if metadata.has("width"):
+                                   width = metadata.get("width")
+                               if metadata.has("height"):
+                                   height = metadata.get("height")
+                               Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
+                               img = Image.open(thumb_image_path)
+                               img.resize((320, height))
+                               img.save(thumb_image_path, "JPEG")
+                               c_time = time.time()
+                               await c.send_video(
+                               chat_id=m.chat.id,
+                               video=d_location,
+                               duration=duration,
+                               width=width,
+                               height=height,
+                               thumb=thumb_image_path,
+                               reply_to_message_id=m.reply_to_message.message_id,
+                               progress=progress_for_pyrogram,
+                               progress_args=(Scripted.UPLOAD_START, df, c_time))       
