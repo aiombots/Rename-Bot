@@ -133,6 +133,10 @@ async def button(c, m):
                   duration - 1
                   )
                 )
+              except:
+                  pass
+                new_file_name = d_location + media_filename + "." + extension
+       
         new_file_name = d_location + media_filename + "." + extension
         os.rename(downloaded_file,new_file_name)
         logger.info(downloaded_file)
