@@ -167,16 +167,16 @@ async def button(c, m):
                  reply_to_message_id=m.reply_to_message.message_id,
                  progress=progress_for_pyrogram,
                  progress_args=(Scripted.UPLOAD_START, df, c_time))
-            try:
-                await df.delete()
-                os.remove(d_location)
-                os.remove(thumb_image_path)
-            except:
-                pass
-            await c.send_message(
-                text=Scripted.UPLOAD_SUCCESS,
-                chat_id=m.chat.id
-            )
+         try:
+             await df.delete()
+             os.remove(d_location)
+             os.remove(thumb_image_path)
+         except:
+             pass
+         await c.send_message(
+             text=Scripted.UPLOAD_SUCCESS,
+             chat_id=m.chat.id
+         )
   
 @Clinton.on_message(filters.private & filters.reply & filters.text)
 async def rep_rename_call(c, m):
