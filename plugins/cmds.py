@@ -99,17 +99,8 @@ async def button(c, m):
        await m.message.delete(True)
        bot_msg = await c.get_messages(m.chat.id, m.reply_to_message.message_id) 
        todown = bot_msg.reply_to_message # msg with media
-       new_f_name = m.text # new name
        media = todown.document or todown.video or todown.audio or todown.voice or todown.video_note or todown.animation
-       try:
-         media_name = media.file_name
-         extension = media_name.split(".")[-1]
-       except:
-         extension = "mkv"
-       await bot_msg.delete() # delete name asked msg 
-       if len(new_f_name) > 64:
-           await m.reply_text(text=f"Lɪᴍɪᴛs Oꜰ Tᴇʟᴇɢʀᴀᴍ Fɪʟᴇ Nᴀᴍᴇ Is 64 Cʜᴀʀᴇᴄᴛᴇʀs Oɴʟʏ")
-           return
+       media_filename = media.file_name
        d_msg = await m.reply_text(Scripted.TRYING_TO_DOWNLOAD, True)
        d_location = Config.DOWNLOAD_LOCATION + "/"
        d_time = time.time()
@@ -124,9 +115,26 @@ async def button(c, m):
             df = await d_msg.edit(
                      text=Scripted.TRYING_TO_UPLOAD
                 )
+                logger.info(d_location)
+                width = 0
+                height = 0
+                duration = 0
+                metadata = extractMetadata(createParser(d_location))
+                if metadata.has("duration"):
+                    duration = metadata.get('duration').seconds
+                thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+                if not os.path.exists(thumb_image_path):
+                    thumb_image_path = await take_screen_shot(
+                        d_location,
+                        os.path.dirname(d_location),
+                        random.randint(
+                            0,
+                            duration - 1
+                        )
+                    )
         except:
             pass
-        new_file_name = d_location + new_f_name + "." + extension
+        new_file_name = d_location + media_filename + "." + extension
         os.rename(downloaded_file,new_file_name)
         logger.info(downloaded_file)
         thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
@@ -144,8 +152,6 @@ async def button(c, m):
                          thumb_image_path = None
 
        else:
-            width = 0
-            height = 0
             metadata = extractMetadata(createParser(thumb_image_path))
             if metadata.has("width"):
                 width = metadata.get("width")
@@ -156,11 +162,13 @@ async def button(c, m):
             img.resize((320, height))
             img.save(thumb_image_path, "JPEG")
             c_time = time.time()
-            await c.send_document(
+            await c.send_video(
             chat_id=m.chat.id,
-            document=new_file_name,
+            video=new_file_name,
+            duration=duration,
+            width=width,
+            height=height,
             thumb=thumb_image_path,
-            caption="thank You for using me",
             reply_to_message_id=m.reply_to_message.message_id,
             progress=progress_for_pyrogram,
             progress_args=(Scripted.UPLOAD_START, df, c_time))
