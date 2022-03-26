@@ -226,6 +226,7 @@ async def rep_rename_call(c, m):
                     thumb_image_path = thumb_image_path
                 else:
                     thumb_image_path = None
+                    h
 
   else:
        width = 0
