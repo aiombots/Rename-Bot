@@ -116,8 +116,7 @@ async def button(c, m):
                      text=Scripted.TRYING_TO_UPLOAD
                 )
            
-            logger.info(d_location)
-           
+            logger.info(d_location)    
             width = 0
             height = 0
             duration = 0
@@ -134,22 +133,6 @@ async def button(c, m):
                   duration - 1
                   )
                 )
-              h
-                
-            
-            
-                
-                    
-                    
-                    
-                        
-                        
-                      )
-                  )
-                h
-     
-        except:
-            pass
         new_file_name = d_location + media_filename + "." + extension
         os.rename(downloaded_file,new_file_name)
         logger.info(downloaded_file)
