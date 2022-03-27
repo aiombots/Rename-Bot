@@ -138,6 +138,7 @@ async def start(bot, update):
                 return
         except UserNotParticipant:
              await bot.send_message(
+                 chat_id=update.chat.id,
                  text=Scripted.JOIN_NOW_TEXT,
                  reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url="https://t.me/AIOM_bots") ]])
              )
