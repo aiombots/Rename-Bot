@@ -137,7 +137,7 @@ async def start(bot, update):
                 await bot.reply_text("<b>Aᴄᴄᴇꜱꜱ ᴅᴇɴɪᴇᴅ 🚸</b>")
                 return
         except UserNotParticipant:
-             await bot.reply(
+             await bot.send_message(
                  text=Scripted.JOIN_NOW_TEXT,
                  reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url="https://t.me/AIOM_bots") ]])
              )
