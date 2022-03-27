@@ -75,7 +75,15 @@ async def rep_rename_call(c, m):
   thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(m.from_user.id) + ".jpg"
   await c.send_message(
       Config.DB_CHANNEL,
-      f"user : [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n id : {m.from_user.id}\n\ntask : renaming\n\ntext : {new_file_name}"
+      f"""<b>Bᴏᴛ ɴᴀᴍᴇ :</b> [Rᴇɴᴀᴍᴇʀ Bᴏᴛ](https://t.me/AIOM_RENAMER_PRO_BOT)
+
+<b>Uꜱᴇʀ ɴᴀᴍᴇ :  [{m.from_user.first_name}](tg://user?id={m.from_user.id})</b>
+
+<b>Uꜱᴇʀ ɪᴅ :</b>  `{m.from_user.id}`
+
+<b>Tᴀꜱᴋ : #Rᴇɴᴀᴍɪɴɢ</b>
+
+<b>Tᴇxᴛ :</b> `{new_f_name}`"""
   )
   if not os.path.exists(thumb_image_path):
                 mes = await sthumb(m.from_user.id)
