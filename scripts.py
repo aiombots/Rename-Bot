@@ -34,23 +34,23 @@ Cᴏᴍᴍᴀɴᴅs -
     ABOUT_TEXT = """
 ╭────[ Aʙᴏᴜᴛ Uꜱ ]────⍟
 │
-├<b>Bᴏᴛ Nᴀᴍᴇ : [Rᴇɴᴀᴍᴇʀ Bᴏᴛ](https://t.me/AIOM_RENAMER_PRO_BOT)</b>
+├ <b>Bᴏᴛ Nᴀᴍᴇ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>Rᴇɴᴀᴍᴇʀ Bᴏᴛ</a></b>
 │
-├<b>Cʜᴀɴɴᴇʟ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
+├ <b>Cʜᴀɴɴᴇʟ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
 │
-├<b>Vᴇʀsɪᴏɴ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>2.9.2 Bᴇᴛᴀ</a></b>
+├ <b>Vᴇʀsɪᴏɴ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>2.9.2 Bᴇᴛᴀ</a></b>
 │
-├<b>Sᴏᴜʀᴄᴇ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>Cᴏᴍɪɴɢ Sᴏᴏɴ</a></b>
+├ <b>Sᴏᴜʀᴄᴇ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>Cᴏᴍɪɴɢ Sᴏᴏɴ</a></b>
 │
-├<b>Sᴇʀᴠᴇʀ : <a href='https://heroku.com'>Hᴇʀᴏᴋᴜ</a></b>
+├ <b>Sᴇʀᴠᴇʀ : <a href='https://heroku.com'>Hᴇʀᴏᴋᴜ</a></b>
 │
-├<b>ʟɪʙʀᴀʀʏ : <a href='https://github.com/pyrogram'>Pʏʀᴏɢʀᴀᴍ</a></b>
+├ <b>ʟɪʙʀᴀʀʏ : <a href='https://github.com/pyrogram'>Pʏʀᴏɢʀᴀᴍ</a></b>
 │
-├<b>Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org'>Pʏᴛʜᴏɴ 3.9.4</a></b>
+├ <b>Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org'>Pʏᴛʜᴏɴ 3.9.4</a></b>
 │
-├<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/ajvadntr2'>A̸̐J̵͋ ̢̰8̴̽1̶͐</a></b>
+├ <b>Dᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/ajvadntr2'>محمد اجود</a></b>
 │
-├<b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
+├ <b>Pᴏᴡᴇʀᴇᴅ Bʏ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
 │
 ╰──────[ Tʜᴀɴᴋ Yᴏᴜ ]───⍟"""
 
