@@ -147,7 +147,7 @@ Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{update.from_user.first_name}](tg://user?id={update.f
 
 @Clinton.on_message(filters.command(["helvp"]))
 async def helpme(bot, update):
-          df = await bot.reply_text("Processing.")
+          df = await bot.reply("Processing.")
           await df.edit("Processing..")
           await df.edit("Processing...")
           await df.edit(
