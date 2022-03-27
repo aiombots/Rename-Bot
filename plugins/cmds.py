@@ -83,7 +83,8 @@ async def rep_rename_call(c, m):
 
 <b>Tᴀꜱᴋ : #Rᴇɴᴀᴍɪɴɢ</b>
 
-<b>Tᴇxᴛ :</b> `{new_f_name}`"""
+<b>Tᴇxᴛ :</b> `{new_f_name}`""",
+      disable_web_page_preview=True
   )
   if not os.path.exists(thumb_image_path):
                 mes = await sthumb(m.from_user.id)
@@ -174,7 +175,7 @@ async def button(c, m):
      await m.message.delete(True)
      await c.send_message(
          chat_id=m.message.chat.id,
-         text="now send me a new name for the file",
+         text="✎ Nᴏᴡ Sᴇɴᴅ Mᴇ A Nᴇᴡ Fɪʟᴇ Nᴀᴍᴇ",
          reply_to_message_id=m.message.reply_to_message.message_id,
          reply_markup=ForceReply(False)
     )
