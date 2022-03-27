@@ -147,6 +147,9 @@ Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{update.from_user.first_name}](tg://user?id={upate.fr
 
 @Clinton.on_message(filters.command(["helvp"]))
 async def helpme(bot, update):
+          df = await bot.send_message("Processing.")
+          await df.edit("Processing..")
+          await df.edit("Processing...")
           await bot.send_message(
           chat_id=update.chat.id,
           text=Scripted.HELP_TEXT,
