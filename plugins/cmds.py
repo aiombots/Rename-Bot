@@ -135,6 +135,13 @@ async def start(bot, update):
           parse_mode="html",
           disable_web_page_preview=True,
           reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
+          await bot.send_message(
+          Config.DB_CHANNEL,
+          f"""<b>Nᴇᴡ Usᴇʀ Jᴏɪɴᴇᴅ: 
+
+Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{update.from_user.first_name}](tg://user?id={upate.from_user.id}) Sᴛᴀʀᴛᴇᴅ Yᴏᴜʀ Bᴏᴛ !</b>""",
+          disable_web_page_preview=True
+          )
 
 
 
@@ -150,7 +157,7 @@ async def helpme(bot, update):
           Config.DB_CHANNEL,
           f"""<b>Nᴇᴡ Usᴇʀ Jᴏɪɴᴇᴅ: 
 
-Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Sᴛᴀʀᴛᴇᴅ Yᴏᴜʀ Bᴏᴛ !</b>""",
+Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{update.from_user.first_name}](tg://user?id={update.from_user.id}) Sᴛᴀʀᴛᴇᴅ Yᴏᴜʀ Bᴏᴛ !</b>""",
           disable_web_page_preview=True
           )
 
