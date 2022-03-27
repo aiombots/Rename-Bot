@@ -140,7 +140,7 @@ async def start(bot, update):
              await bot.send_message(
                  chat_id=update.chat.id,
                  text=Scripted.JOIN_NOW_TEXT,
-                 reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url="https://t.me/AIOM_bots") ]])
+                 reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url="https://t.me/AIOM_bots") ],[ InlineKeyboardButton(text='Try Again', url=f'https://t.me/{bot.username}?start={update.command[1]}') ]])
              )
              return        
     await bot.send_message(
