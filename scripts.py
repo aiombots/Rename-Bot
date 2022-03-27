@@ -2,7 +2,7 @@ class Scripted(object):
 
 
     PROGRESS_DIS = """\n
-╭────[{0}]─────⍟
+╭───[ {0} ]────⍟
 │
 ├<b>📁 : {2} | {3}</b>
 │
@@ -14,37 +14,45 @@ class Scripted(object):
 ╰──────────────────⍟"""
 
     HELP_TEXT = """
-<i>𝐖𝐚𝐭𝐜𝐡 𝐕𝐢𝐝𝐞𝐨 𝐇𝐨𝐰 𝐭𝐨 𝐔𝐬𝐞 𝐌𝐞 <a href='https://youtu.be/HnXdu74o34E'>[ ᴄʟɪᴄᴋ ʜᴇʀᴇ ]</a></i>\n
-<i>𝐒𝐞𝐧𝐝 𝐚 𝐩𝐡𝐨𝐭𝐨 𝐭𝐨 𝐦𝐚𝐤𝐞 𝐢𝐭 𝐚𝐬 𝐭𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 (optional)</i>\n
-<i>𝐒𝐞𝐧𝐝 𝐦𝐞 𝐚𝐧𝐲 𝐟𝐢𝐥𝐞 (or) 𝐌𝐞𝐝𝐢𝐚 𝐟𝐫𝐨𝐦 𝐭𝐞𝐥𝐞𝐠𝐫𝐚𝐦</i>\n
-<i>𝐂𝐨𝐧𝐯𝐞𝐫𝐭 𝐟𝐢𝐥𝐞𝐬 𝐢𝐧𝐭𝐨 𝐯𝐢𝐝𝐞𝐨 𝐮𝐬𝐞 /convert 𝐜𝐨𝐦𝐦𝐚𝐧𝐝</i>\n
-<i>𝐑𝐞𝐩𝐥𝐲 𝐭𝐨 𝐭𝐡𝐚𝐭 𝐟𝐢𝐥𝐞 𝐰𝐢𝐭𝐡 /rename 𝐧𝐞𝐰 𝐧𝐚𝐦𝐞.ext</i>\n
-<i>𝐕𝐢𝐞𝐰 𝐲𝐨𝐮𝐫 𝐭𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 𝐝𝐨 /sthumbnail 𝐜𝐨𝐦𝐦𝐚𝐧𝐝</i>\n
-<i>𝐃𝐞𝐥𝐞𝐭𝐞 𝐲𝐨𝐮𝐫 𝐭𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 𝐝𝐨 /dthumbnail 𝐜𝐨𝐦𝐦𝐚𝐧𝐝</i>"""
+Sᴇɴᴅ A Pʜᴏᴛᴏ Tᴏ Mᴀᴋᴇ Iᴛ As Tʜᴜᴍʙɴᴀɪʟ (ᴏᴘᴛɪᴏɴᴀʟ)
+
+Sᴇɴᴅ Mᴇ Aɴʏ Fɪʟᴇ (ᴏʀ) Mᴇᴅɪᴀ 
+
+Sᴇʟᴇᴄᴛ Tʜᴇ Dᴇsɪʀᴇᴅ Oᴘᴛɪᴏɴ Aɴᴅ Sᴇɴᴅ Nᴇᴡ Fɪʟᴇ Nᴀᴍᴇ
+
+Tʜᴀᴛs Iᴛ, Wᴀɪᴛ Iᴛ Tᴏ Pʀᴏᴄᴇss
+
+Cᴏᴍᴍᴀɴᴅs -
+
+/start - Tᴏ Sᴛᴀʀᴛ Tʜᴇ Bᴏᴛ
+
+/sthumbnail - Tᴏ Vɪᴇᴡ Yᴏᴜ'ʀᴇ Tʜᴜᴍʙɴᴀɪʟ
+
+/dthumbnail - Tᴏ Dᴇʟᴇᴛᴇ Yᴏᴜ'ʀᴇ Tʜᴜᴍʙɴᴀɪʟ"""
 
 
     ABOUT_TEXT = """
-╭────[🔅Rᴇɴᴀᴍᴇʀ Bᴏᴛ🔅]───⍟
+╭────[ Aʙᴏᴜᴛ Uꜱ ]────⍟
 │
-├<b>🤖 Bot Name : <a href='https://t.me/teleroid_renamer_bot'>Rename X2 Bot</a></b>
+├<b>Bᴏᴛ Nᴀᴍᴇ : [Rᴇɴᴀᴍᴇʀ Bᴏᴛ](https://t.me/AIOM_RENAMER_PRO_BOT)</b>
 │
-├<b>📢 Channel : <a href='https://t.me/TeleRoidGroup'>@TeleRoidGroup</a></b>
+├<b>Cʜᴀɴɴᴇʟ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
 │
-├<b>👥 Version : <a href='https://t.me/TeleRoid_Renamer_bot'>0.9.2 beta</a></b>
+├<b>Vᴇʀsɪᴏɴ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>2.9.2 Bᴇᴛᴀ</a></b>
 │
-├<b>💢 Source : <a href='https://github.com/PredatorHackerzZ/Renamer-bot'>Click Here</a></b>
+├<b>Sᴏᴜʀᴄᴇ : <a href='https://t.me/AIOM_RENAMER_PRO_BOT'>Cᴏᴍɪɴɢ Sᴏᴏɴ</a></b>
 │
-├<b>🌐 Server : <a href='https://heroku.com'>Heroku</a></b>
+├<b>Sᴇʀᴠᴇʀ : <a href='https://heroku.com'>Hᴇʀᴏᴋᴜ</a></b>
 │
-├<b>📕 Library : <a href='https://github.com/pyrogram'>Pyrogram 1.2.8</a></b>
+├<b>ʟɪʙʀᴀʀʏ : <a href='https://github.com/pyrogram'>Pʏʀᴏɢʀᴀᴍ</a></b>
 │
-├<b>㊙ Language: <a href='https://www.python.org'>Python 3.9.4</a></b>
+├<b>Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org'>Pʏᴛʜᴏɴ 3.9.4</a></b>
 │
-├<b>👨‍💻 Developer : <a href='https://t.me/PredatorHackerZ'>Pred∆tor</a></b>
+├<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/ajvadntr2'>A̸̐J̵͋ ̢̰8̴̽1̶͐</a></b>
 │
-├<b>🚸 Powered By : <a href='https://t.me/Moviesflixers_DL'>@HindiWebNetwork</a></b>
+├<b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href='https://t.me/aiom_bots'>Aɪ๏ᴍ Bᴏᴛs</a></b>
 │
-╰──────[Thanks 😊]───⍟"""
+╰──────[ Tʜᴀɴᴋ Yᴏᴜ ]───⍟"""
 
     CUSTOM_CAPTION = "<i>{}</i>"
     ACCESS_DENIED = "<b>Aᴄᴄᴇꜱꜱ ᴅᴇɴɪᴇᴅ 🚸</b>"
