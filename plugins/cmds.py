@@ -171,7 +171,7 @@ async def button(c, m):
          reply_markup=ForceReply(False)
     )
 
-    elif m.data == "Convert":
+    elif m.data == "convert":
        await m.message.edit("Coming Soon")
 
     elif m.data == "about":
