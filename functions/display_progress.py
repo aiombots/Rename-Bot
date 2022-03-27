@@ -44,6 +44,7 @@ async def progress_for_pyrogram(
 
 
         tmp = Scripted.PROGRESS_DIS.format(
+                  ud_type,
                   round(percentage, 2),
                   humanbytes(current),
                   humanbytes(total),
