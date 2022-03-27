@@ -112,7 +112,7 @@ async def rep_rename_call(c, m):
        chat_id=m.chat.id,
        document=new_file_name,
        thumb=thumb_image_path,
-       caption="thank You for using me",
+       reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Aɪ๏ᴍ Bᴏᴛs', url="https://t.me/AIOM_Bots")]]),
        reply_to_message_id=m.reply_to_message.message_id,
        progress=progress_for_pyrogram,
        progress_args=(Scripted.UPLOAD_START, df, c_time))
