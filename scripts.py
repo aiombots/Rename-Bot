@@ -57,8 +57,8 @@ class Scripted(object):
     TRYING_TO_DOWNLOAD = "<b>Pʀᴏᴄᴇssɪɴɢ....</b>"
     UPLOAD_SUCCESS = "<u><i>Tʜᴀɴᴋs Fᴏʀ Usɪɴɢ ᴍᴇ❤</i></u>"
     REPLY_TO_MEDIA = "<i>Reply to Media For Converting with Command /convert</i>"
-    UPLOAD_START = "<i>Uploading</i>\n"
-    DOWNLOAD_START = "<i>Downloading</i>\n"
+    UPLOAD_START = "<b>UPLOADING</b>"
+    DOWNLOAD_START = "<b>RENAMEING</b>"
     JOIN_NOW_TEXT = "Jᴏɪɴ Mʏ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Usᴇ Tʜɪs Bᴏᴛ</b>"
     REPLY_TO_FILE = "<b>Reply to that media with /rename new name .ext</i>"
     CONTACT_MY_DEVELOPER = "<i>Something Went Wrong! Contact in Support @AIOM_BOTS</i>"
@@ -69,4 +69,4 @@ Tʜɪꜱ Iꜱ A Fᴀꜱᴛᴇꜱᴛ Fɪʟᴇ Rᴇɴᴀᴍᴇ Bᴏᴛ Wɪᴛʜ F�
 Pʀᴇꜱꜱ Hᴇʟᴩ Bᴜᴛᴛᴏɴ Fᴏʀ Mᴏʀᴇ Iɴꜰᴏ...
 
 Pᴏᴡᴇʀᴇᴅ Bʏ : @AIOM_BOTS</b>"""
-    UPGRADE_TEXT = "<b>To upgrade your subscription <a href='https://t.me/HelplessBoi'>[Click Here]</a></b>"
+    UPGRADE_TEXT = "<b>To upgrade your subscription <a href='https://t.me/ajvadntr'>[Click Here]</a></b>"
