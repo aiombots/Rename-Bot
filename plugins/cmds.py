@@ -146,6 +146,13 @@ async def helpme(bot, update):
           parse_mode="html",
           disable_web_page_preview=True,
           reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(text='🔐 ᴄʟᴏꜱᴇ', callback_data='DM') ] ] ) )
+          await bot.send_message(
+          Config.DB_CHANNEL,
+          f"""<b>Nᴇᴡ Usᴇʀ Jᴏɪɴᴇᴅ: 
+
+Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{m.from_user.first_name}](tg://user?id={m.from_user.id}) Sᴛᴀʀᴛᴇᴅ Yᴏᴜʀ Bᴏᴛ !</b>""",
+          disable_web_page_preview=True
+          )
 
 
 
