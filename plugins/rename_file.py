@@ -138,13 +138,19 @@ async def on_media_handler(c: Clinton, m: "types.Message"):
     file_size = humanbytes(media.file_size)
     await c.send_message(  
         chat_id=m.chat.id,
-        text=f"""File Name: {file_name}
-File Extension: {file_name.rsplit('.', 1)[-1].upper()}
-File Type: `{file_type}
-File Size: {file_size}""",
-        reply_markup=types.InlineKeyboardMarkup(
-            [[types.InlineKeyboardButton("Convert", callback_data="convert"),
-              types.InlineKeyboardButton("Rename", callback_data="rename")]]
+        text=f"""<b>Fɪʟᴇ Nᴀᴍᴇ :</b> `{file_name}`
+
+<b>Fɪʟᴇ Exᴛᴇɴsɪᴏɴ :</b> {file_name.rsplit('.', 1)[-1].upper()}
+
+<b>Fɪʟᴇ Tʏᴘᴇ :</b> {file_type}
+
+<b>Fɪʟᴇ Sɪᴢᴇ :</b> {file_size}""",
+        reply_markup=InlineKeyboardMarkup([[
+                                          InlineKeyboardButton("↻ Cᴏɴᴠᴇʀᴛ", callback_data="convert"),
+                                          InlineKeyboardButton("✎ Rᴇɴᴀᴍᴇ", callback_data="rename")
+                                          ],[
+                                          InlineKeyboardButton("Cᴀɴᴄᴇʟ", callback_data="close")
+                                          ]]
         ),
         disable_web_page_preview=True,
         reply_to_message_id=m.message_id
