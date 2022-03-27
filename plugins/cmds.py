@@ -14,6 +14,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
+fource_sub = "aiom_bots"
 
 
 logging.basicConfig(level=logging.DEBUG,
@@ -129,19 +130,31 @@ async def rep_rename_call(c, m):
 
 @Clinton.on_message(filters.command(["start"]))
 async def start(bot, update):
-          await bot.send_message(
-          chat_id=update.chat.id,
-          text=Scripted.START_TEXT.format(update.from_user.mention),
-          parse_mode="html",
-          disable_web_page_preview=True,
-          reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
-          await bot.send_message(
-          Config.DB_CHANNEL,
-          f"""<b>Nᴇᴡ Usᴇʀ Jᴏɪɴᴇᴅ: 
+    if fource_sub:
+        try:
+            user = await bot.get_chat_member(fource_sub, update.chat.id)
+            if user.status == "kicked":
+                await bot.reply_text("<b>Aᴄᴄᴇꜱꜱ ᴅᴇɴɪᴇᴅ 🚸</b>")
+                return
+        except UserNotParticipant:
+             await bot.reply(
+                 text=Scripted.JOIN_NOW_TEXT,
+                 reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url="https://t.me/AIOM_bots") ]])
+             )
+             return        
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Scripted.START_TEXT.format(update.from_user.mention),
+        parse_mode="html",
+        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton(text='Hᴇʟᴩ', callback_data='help'), InlineKeyboardButton(text='Aʙᴏᴜᴛ', callback_data='about') ],[ InlineKeyboardButton(text='Cʟᴏꜱᴇ', callback_data='close') ] ] ) )
+    await bot.send_message(
+        Config.DB_CHANNEL,
+        f"""<b>Nᴇᴡ Usᴇʀ Jᴏɪɴᴇᴅ:       
 
 Mʏ Nᴇᴡ Fʀɪᴇɴᴅ [{update.from_user.first_name}](tg://user?id={update.from_user.id}) Sᴛᴀʀᴛᴇᴅ Yᴏᴜʀ Bᴏᴛ !</b>""",
-          disable_web_page_preview=True
-          )
+        disable_web_page_preview=True
+    )
 
 
 
