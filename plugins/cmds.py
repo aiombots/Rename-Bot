@@ -228,7 +228,6 @@ async def button(c, m):
                  ]
                ]
           )
-       await m.message.edit("Coming Soon")
     elif m.data == "cvideo":
       update = m.message
       bot = c
