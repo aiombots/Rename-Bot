@@ -1,6 +1,8 @@
 #https://github.com/PredatorHackerzZ/RENAMER-BOT
 
-
+import requests 
+import ffmpeg
+import sys
 import os
 import asyncio
 import sqlite3
@@ -36,6 +38,8 @@ from scripts import Scripted
 from pyrogram import Client as Clinton
 from functions.display_progress import progress_for_pyrogram
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ForceReply, Message
+from functions.nekmo_ffmpeg import take_screen_shot
+from functions.display_progress import progress_for_pyrogram
 
 
 
@@ -203,8 +207,116 @@ async def button(c, m):
     )
 
     elif m.data == "convert":
+       m = m.message.reply_to_message
+       media = m.document or m.video or m.audio or m.voice or m.video_note or m.animation
+       if m.document:
+          if not media.file_name.endswith('.mp4'):
+            return await m.message.edit('Only supported MP4')
+          else:
+            pass
+          return await c.send_message(
+             chat_id=m.message.chat.id,
+             text="Select Button Below to Convert",
+             reply_to_message_id=m.message.reply_to_message.message_id,
+             reply_markup=InlineKeyboardMarkup(
+               [
+                 [
+                   InlineKeyboardButton("Convert to Video", callback_data="cvideo")
+                 ],
+                 [
+                   InlineKeyboardButton("Cᴀɴᴄᴇʟ", callback_data="close")
+                 ]
+               ]
+          )
        await m.message.edit("Coming Soon")
+    elif m.data == "cvideo":
+      update = m.message
+      bot = c
+      if update.reply_to_message is not None:
+          description = Scripted.CUSTOM_CAPTION
+          download_location = Config.DOWNLOAD_LOCATION + "/"
+          c = await bot.send_message(
+              chat_id=update.chat.id,
+              text=Scripted.TRYING_TO_DOWNLOAD,
+              reply_to_message_id=update.message_id
+          )
+          c_time = time.time()
+          the_real_download_location = await bot.download_media(
+              message=update.reply_to_message,
+              file_name=download_location,
+              progress=progress_for_pyrogram,
+              progress_args=(
+                  Scripted.DOWNLOAD_START,
+                  c,
+                  c_time
+              )
+          )
+          if the_real_download_location is not None:
+              await bot.edit_message_text(
+                  text=Scripted.TRYING_TO_UPLOAD,
+                  chat_id=update.chat.id,
+                  message_id=c.message_id
+              )
+              logger.info(the_real_download_location)
+              width = 0
+              height = 0
+              duration = 0
+              metadata = extractMetadata(createParser(the_real_download_location))
+              if metadata.has("duration"):
+                  duration = metadata.get('duration').seconds
+              thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+              if not os.path.exists(thumb_image_path):
+                  thumb_image_path = await take_screen_shot(
+                      the_real_download_location,
+                      os.path.dirname(the_real_download_location),
+                      random.randint(
+                          0,
+                          duration - 1
+                      )
+                  )
+              logger.info(thumb_image_path)
+              metadata = extractMetadata(createParser(thumb_image_path))
+              if metadata.has("width"):
+                  width = metadata.get("width")
+              if metadata.has("height"):
+                  height = metadata.get("height")
+              Image.open(thumb_image_path).convert("RGB").save(thumb_image_path)
+              img = Image.open(thumb_image_path)
+              img.resize((90, height))
+              img.save(thumb_image_path, "JPEG")
+              c_time = time.time()
+              await bot.send_video(
+                  chat_id=update.chat.id,
+                  video=the_real_download_location,
+                  duration=duration,
+                  width=width,
+                  height=height,
+                  supports_streaming=True,
+                  thumb=thumb_image_path,
+                  reply_to_message_id=update.reply_to_message.message_id,
+                  progress=progress_for_pyrogram,
+                  progress_args=(
+                      Scripted.UPLOAD_START,
+                      c,
+                      c_time
+                  )
+              )
+              try:
+                  os.remove(the_real_download_location)
+                  #os.remove(thumb_image_path)
+              except:
+                  pass
+              await bot.edit_message_text(
+                    text=Scripted.UPLOAD_SUCCESS,
+                    chat_id=update.chat.id,
+                    message_id=c.message_id
+              )
 
+      else:
+          await bot.send_message(
+              chat_id=update.chat.id,
+              text=Scripted.REPLY_TO_MEDIA,
+              reply_to_message_id=update.message_id)
     elif m.data == "about":
        await m.message.edit(Scripted.ABOUT_TEXT,
                             parse_mode="html",
@@ -226,6 +338,3 @@ async def button(c, m):
     elif m.data == "close":
        await m.message.delete()
 
-
-
-                                                              
