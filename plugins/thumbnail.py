@@ -29,7 +29,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 async def save_photo(bot, update):
   
     if update.media_group_id is not None:
-        download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + "/" + str(update.media_group_id) + "/"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + (update.from_user.id) + "/" + str(update.media_group_id) + "/"
         if not os.path.isdir(download_location):
             os.makedirs(download_location)
         await sql.df_thumb(update.from_user.id, update.message_id)
@@ -39,7 +39,7 @@ async def save_photo(bot, update):
         )
     else:
         # received single photo
-        download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + (update.from_user.id) + ".jpg"
         await sql.df_thumb(update.from_user.id, update.message_id)
         await bot.download_media(
             message=update,
